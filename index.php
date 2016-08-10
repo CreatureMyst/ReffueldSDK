@@ -8,6 +8,6 @@ function writeLn($line)
     echo $line . "\r\n";
 }
 
-$reffueld = new \CreatureMyst\ReffueldSDK\Reffueld();
+$reffueld = new \CreatureMyst\ReffueldSDK\Reffueld('asd');
 
 writeLn($reffueld->test());
