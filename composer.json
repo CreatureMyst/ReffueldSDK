@@ -1,0 +1,16 @@
+{
+    "name": "creaturemyst/reffueld",
+    "description": "Reffueld Referal System PHP SDK",
+    "authors": [
+        {
+            "name": "Dima Trish",
+            "email": "git@dimatrish.ru"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "CreatureMyst\\ReffueldSDK\\": "src"
+        }
+    }
+}
