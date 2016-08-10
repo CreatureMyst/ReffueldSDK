@@ -7,7 +7,9 @@
             "email": "git@dimatrish.ru"
         }
     ],
-    "require": {},
+    "require": {
+        "guzzlehttp/guzzle": "~6.0"
+    },
     "autoload": {
         "psr-4": {
             "CreatureMyst\\ReffueldSDK\\": "src"
