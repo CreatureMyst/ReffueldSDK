@@ -2,14 +2,21 @@
 
 namespace CreatureMyst\ReffueldSDK\Model;
 
+use CreatureMyst\ReffueldSDK\Interfaces\Reffueldable;
+
 /**
  * Class User
  *
  * @package CreatureMyst\ReffueldSDK\Model
  * @see https://www.reffueld.com/apidocs/#couponuser-model
  */
-class User
+class User implements Reffueldable
 {
+    const
+        ROLE_COMPANY = 'COMPANY',
+        ROLE_SUPPLIER = 'SUPPLIER',
+        ROLE_CONSUMER = 'CONSUMER';
+
     /** @var string */
     protected $id;
 
@@ -29,7 +36,7 @@ class User
     protected $externalId;
 
     /** @var string */
-    protected $role;
+    protected $role = self::ROLE_CONSUMER;
 
     /** @var array */
     protected $tags;
@@ -48,6 +55,11 @@ class User
 
     /** @var \DateTime */
     protected $lastTransaction;
+
+    public function getSection()
+    {
+        return 'user';
+    }
 
     /**
      * @return string
@@ -281,5 +293,10 @@ class User
     {
         $this->lastTransaction = $lastTransaction;
         return $this;
+    }
+
+    public function toJson()
+    {
+        return json_encode(get_object_vars($this));
     }
 }

@@ -2,7 +2,7 @@
 
 namespace CreatureMyst\ReffueldSDK;
 
-use CreatureMyst\ReffueldSDK\Exception\ConfigurationException;
+use CreatureMyst\ReffueldSDK\Interfaces\Reffueldable;
 use GuzzleHttp\Client;
 
 /**
@@ -16,38 +16,23 @@ class Reffueld
     const
         ENDPOINT = 'https://www.reffueld.com/api/v1/';      // Reffueld API EndPoint
 
-    /** @var string|null */
-    protected $apiKey = null;
-
     /** @var Client */
     protected $client;
 
     public function __construct($apiKey)
     {
-        $this->apiKey = $apiKey;
         $this->client = new Client([
             'base_uri' => self::ENDPOINT,
             'timeout' => 10,
+            'headers' => [
+                'X-REFFUELD-APIKEY' => $apiKey,
+            ]
         ]);
     }
 
     public function test()
     {
-        $this->getApiKey();
         return 'ads';
-    }
-
-    /**
-     * @return string
-     * @throws ConfigurationException
-     */
-    protected function getApiKey()
-    {
-        if (null == $this->apiKey) {
-            throw new ConfigurationException;
-        }
-
-        return $this->apiKey;
     }
 
     /**
@@ -56,5 +41,14 @@ class Reffueld
     protected function getClient()
     {
         return $this->client;
+    }
+
+    /**
+     * @param Reffueldable $model
+     * @return ApiCall
+     */
+    public function createApiCall(Reffueldable $model)
+    {
+        return ApiCall::createInstance($this->getClient(), $model);
     }
 }
