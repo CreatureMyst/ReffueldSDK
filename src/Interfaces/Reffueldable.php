@@ -4,7 +4,18 @@ namespace CreatureMyst\ReffueldSDK\Interfaces;
 
 interface Reffueldable
 {
-    public function getSection();
+    /**
+     * Reffueld API Section Name.
+     *
+     * @return string
+     */
+    public static function sectionName();
 
-    public function toJson();
+    public function save();
+    public function delete();
+
+    public static function findOne($id);
+    public static function findAll();
+
+    public function persistBundle();
 }

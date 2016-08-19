@@ -2,13 +2,15 @@
 
 namespace CreatureMyst\ReffueldSDK\Model;
 
+use CreatureMyst\ReffueldSDK\Utils\ApiModel;
+
 /**
  * Class CouponType
  *
  * @package CreatureMyst\ReffueldSDK\Model
  * @see https://www.reffueld.com/apidocs/#coupon-type
  */
-class CouponType
+class CouponType extends ApiModel
 {
     const
         CODE_TYPE_RANDOM = 'RANDOM',
@@ -18,359 +20,65 @@ class CouponType
         APPLICABILITY_NEW_USER_ONLY = 'NEW_USER_ONLY';
 
     /** @var string */
-    protected $id;
-
+    public $id;
     /** @var \DateTime */
-    protected $created;
-
+    public $created;
     /** @var \DateTime */
-    protected $cancelled;
-
+    public $cancelled;
     /** @var \DateTime */
-    protected $expiry;
-
+    public $expiry;
     /** @var string */
-    protected $name;
-
+    public $name;
     /** @var string */
-    protected $description;
-
+    public $description;
     /** @var array */
-    protected $tags;
-
+    public $tags;
     /** @var integer */
-    protected $value;
-
+    public $value;
     /** @var integer */
-    protected $reciprocalValue;
-
+    public $reciprocal_value;
     /** @var string */
-    protected $fromRole;
-
+    public $from_role;
     /** @var string */
-    protected $toRole;
-
+    public $to_role;
     /** @var string */
-    protected $codeType = self::CODE_TYPE_RANDOM;
-
+    public $code_type = self::CODE_TYPE_RANDOM;
     /** @var string */
-    protected $codePrefix;
-
+    public $code_prefix;
     /** @var integer */
-    protected $claimLimit;
-
+    public $claim_limit;
     /** @var integer */
-    protected $issuedCount;
-
+    public $issued_count;
     /** @var string */
-    protected $applicability = self::APPLICABILITY_ANY;
-
+    public $applicability = self::APPLICABILITY_ANY;
     /** @var string TODO: JSON-TO-OBJECT */
-    protected $fences;
+    public $fences;
 
-    /**
-     * @return string
-     */
-    public function getId()
+    public static function sectionName()
     {
-        return $this->id;
+        return 'coupontype';
     }
 
-    /**
-     * @param string $id
-     * @return CouponType
-     */
-    public function setId($id)
+    public function persistBundle()
     {
-        $this->id = $id;
-        return $this;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getCreated()
-    {
-        return $this->created;
-    }
-
-    /**
-     * @param \DateTime $created
-     * @return CouponType
-     */
-    public function setCreated($created)
-    {
-        $this->created = $created;
-        return $this;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getCancelled()
-    {
-        return $this->cancelled;
-    }
-
-    /**
-     * @param \DateTime $cancelled
-     * @return CouponType
-     */
-    public function setCancelled($cancelled)
-    {
-        $this->cancelled = $cancelled;
-        return $this;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getExpiry()
-    {
-        return $this->expiry;
-    }
-
-    /**
-     * @param \DateTime $expiry
-     * @return CouponType
-     */
-    public function setExpiry($expiry)
-    {
-        $this->expiry = $expiry;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param string $name
-     * @return CouponType
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * @param string $description
-     * @return CouponType
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getTags()
-    {
-        return $this->tags;
-    }
-
-    /**
-     * @param array $tags
-     * @return CouponType
-     */
-    public function setTags($tags)
-    {
-        $this->tags = $tags;
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getValue()
-    {
-        return $this->value;
-    }
-
-    /**
-     * @param int $value
-     * @return CouponType
-     */
-    public function setValue($value)
-    {
-        $this->value = $value;
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getReciprocalValue()
-    {
-        return $this->reciprocalValue;
-    }
-
-    /**
-     * @param int $reciprocalValue
-     * @return CouponType
-     */
-    public function setReciprocalValue($reciprocalValue)
-    {
-        $this->reciprocalValue = $reciprocalValue;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getFromRole()
-    {
-        return $this->fromRole;
-    }
-
-    /**
-     * @param string $fromRole
-     * @return CouponType
-     */
-    public function setFromRole($fromRole)
-    {
-        $this->fromRole = $fromRole;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getToRole()
-    {
-        return $this->toRole;
-    }
-
-    /**
-     * @param string $toRole
-     * @return CouponType
-     */
-    public function setToRole($toRole)
-    {
-        $this->toRole = $toRole;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCodeType()
-    {
-        return $this->codeType;
-    }
-
-    /**
-     * @param string $codeType
-     * @return CouponType
-     */
-    public function setCodeType($codeType)
-    {
-        $this->codeType = $codeType;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCodePrefix()
-    {
-        return $this->codePrefix;
-    }
-
-    /**
-     * @param string $codePrefix
-     * @return CouponType
-     */
-    public function setCodePrefix($codePrefix)
-    {
-        $this->codePrefix = $codePrefix;
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getClaimLimit()
-    {
-        return $this->claimLimit;
-    }
-
-    /**
-     * @param int $claimLimit
-     * @return CouponType
-     */
-    public function setClaimLimit($claimLimit)
-    {
-        $this->claimLimit = $claimLimit;
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getIssuedCount()
-    {
-        return $this->issuedCount;
-    }
-
-    /**
-     * @param int $issuedCount
-     * @return CouponType
-     */
-    public function setIssuedCount($issuedCount)
-    {
-        $this->issuedCount = $issuedCount;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getApplicability()
-    {
-        return $this->applicability;
-    }
-
-    /**
-     * @param string $applicability
-     * @return CouponType
-     */
-    public function setApplicability($applicability)
-    {
-        $this->applicability = $applicability;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getFences()
-    {
-        return $this->fences;
-    }
-
-    /**
-     * @param string $fences
-     * @return CouponType
-     */
-    public function setFences($fences)
-    {
-        $this->fences = $fences;
-        return $this;
+        return [
+            'id' => $this->id,
+            'created' => $this->created,
+            'cancelled' => $this->cancelled,
+            'expiry' => $this->expiry,
+            'name' => $this->name,
+            'description' => $this->description,
+            'tags' => $this->tags,
+            'value' => $this->value,
+            'reciprocal_value' => $this->reciprocal_value,
+            'from_role' => $this->from_role,
+            'to_role' => $this->to_role,
+            'code_type' => $this->code_type,
+            'code_prefix' => $this->code_prefix,
+            'claim_limit' => $this->claim_limit,
+            'issued_count' => $this->issued_count,
+            'applicability' => $this->applicability,
+            'fences' => $this->fences,
+        ];
     }
 }
