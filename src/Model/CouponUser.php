@@ -140,6 +140,13 @@ class CouponUser extends ApiModel
         return $response->getStatusCode() == 200;
     }
 
+    /**
+     * Charge with auto reward.
+     *
+     * @param int $amount (float amount * 100)
+     * @param null|string $description
+     * @return bool
+     */
     public function charge($amount, $description = null)
     {
         $url = static::sectionName() . '/' . $this->id . '/charge';
