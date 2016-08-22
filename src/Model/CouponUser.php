@@ -43,6 +43,16 @@ class CouponUser extends ApiModel
     public $last_claim;
 
     /**
+     * @param string $id
+     * @return CouponUser
+     */
+    public function setId($id)
+    {
+        $this->id = (string)$id;
+        return $this;
+    }
+
+    /**
      * @param string $name
      * @return CouponUser
      */
@@ -117,10 +127,9 @@ class CouponUser extends ApiModel
     public function persistBundle()
     {
         return [
+            'id' => $this->id,
             'name' => $this->name,
-            'external_id' => $this->external_id,
             'role' => $this->role,
-            'tags' => $this->tags,
             'balance' => $this->balance,
             'description' => $this->description,
         ];
