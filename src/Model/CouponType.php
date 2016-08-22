@@ -81,4 +81,24 @@ class CouponType extends ApiModel
             'fences' => $this->fences,
         ];
     }
+
+    /**
+     * Issue new coupon from provided user.
+     *
+     * @param CouponUser $user
+     * @param int $quantity
+     * @return string
+     */
+    public function issueCoupon(CouponUser $user, $quantity = 1)
+    {
+        $url = static::sectionName() . '/' . $this->id . '/issue';
+        $response = $this->request($url, parent::METHOD_POST, [
+            'from_user_id' => $user->id,
+            'quantity' => $quantity
+        ], false);
+
+        $data = \GuzzleHttp\json_decode($response->getBody()->getContents());
+        $code = $data->data[0];
+        return $code;
+    }
 }

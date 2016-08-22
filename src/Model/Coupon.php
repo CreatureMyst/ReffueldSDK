@@ -42,4 +42,9 @@ class Coupon extends ApiModel
     {
         return [];  // TODO: Fix it
     }
+
+    public static function findOneByCode($code)
+    {
+        // TODO: Return coupon
+    }
 }

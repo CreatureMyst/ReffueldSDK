@@ -125,4 +125,30 @@ class CouponUser extends ApiModel
             'description' => $this->description,
         ];
     }
+
+    /**
+     * Claim coupon by code.
+     *
+     * @param string $code
+     * @return bool
+     */
+    public function claimCoupon($code)
+    {
+        $url = static::sectionName() . '/' . $this->id . '/claim/' . $code;
+        $response = $this->request($url, parent::METHOD_POST, ['description' => 'Claimed'], false);
+
+        return $response->getStatusCode() == 200;
+    }
+
+    public function charge($amount, $description = null)
+    {
+        $url = static::sectionName() . '/' . $this->id . '/charge';
+        $response = $this->request($url, parent::METHOD_POST, [
+            'amount' => $amount,
+            'reciprocate' => true,
+            'description' => $description,
+        ], false);
+
+        return $response->getStatusCode() == 201;
+    }
 }

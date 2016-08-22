@@ -6,6 +6,7 @@ use CreatureMyst\ReffueldSDK\Exception\ReffueldException;
 use CreatureMyst\ReffueldSDK\Interfaces\Reffueldable;
 use CreatureMyst\ReffueldSDK\Reffueld;
 use GuzzleHttp\Exception\ClientException;
+use Psr\Http\Message\ResponseInterface;
 
 abstract class ApiModel implements Reffueldable
 {
@@ -75,10 +76,10 @@ abstract class ApiModel implements Reffueldable
      * @param $url
      * @param string $method
      * @param array $data Form data.
-     * @return Reffueldable[]|Reffueldable
+     * @return Reffueldable[]|Reffueldable|ResponseInterface
      * @throws ReffueldException
      */
-    private static function request($url, $method = self::METHOD_GET, array $data = [])
+    protected static function request($url, $method = self::METHOD_GET, array $data = [], $loadModel = true)
     {
         $client = static::getClient();
 
@@ -94,6 +95,16 @@ abstract class ApiModel implements Reffueldable
             throw $e;
         }
 
+        return $loadModel ? self::loadModelProcess($response) : $response;
+    }
+
+    /**
+     * @param ResponseInterface $response
+     * @return array|Reffueldable|null
+     * @throws ReffueldException
+     */
+    private static function loadModelProcess(ResponseInterface $response)
+    {
         $data = $response->getBody()->getContents();
         $data = \GuzzleHttp\json_decode($data);
 
