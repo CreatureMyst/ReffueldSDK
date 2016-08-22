@@ -19,6 +19,9 @@ class Reffueld
     /** @var Client */
     protected static $client;
 
+    /** @var bool */
+    public static $debug = false;
+
     /**
      * @param string $apiKey
      * @return void

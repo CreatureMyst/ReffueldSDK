@@ -63,6 +63,16 @@ class CouponUser extends ApiModel
     }
 
     /**
+     * @param $email
+     * @return CouponUser
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+        return $this;
+    }
+
+    /**
      * @param string $external_id
      * @return CouponUser
      */

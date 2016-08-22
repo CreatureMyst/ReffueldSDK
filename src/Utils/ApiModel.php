@@ -86,7 +86,7 @@ abstract class ApiModel implements Reffueldable
         $options = [];
         if (count($data)) {
             $options['json'] = $data;
-            $options['debug'] = true;
+            $options['debug'] = Reffueld::$debug;
         }
 
         try {
