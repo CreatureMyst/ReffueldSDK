@@ -34,13 +34,15 @@ class CouponUser extends ApiModel
     /** @var array */
     public $tags;
     /** @var float */
-    public $balance;
+    public $balance = 0;
     /** @var string */
     public $description;
     /** @var integer */
     public $coupon_count;
     /** @var \DateTime */
     public $last_claim;
+    /** @var \DateTime */
+    public $lastTransaction;
 
     /**
      * @param string $id
@@ -125,9 +127,6 @@ class CouponUser extends ApiModel
         $this->description = $description;
         return $this;
     }
-
-    /** @var \DateTime */
-    public $lastTransaction;
 
     public static function sectionName()
     {
